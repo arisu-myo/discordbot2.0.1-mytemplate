@@ -4,9 +4,8 @@ import discord
 # from discord import app_commands
 from discord.ext import commands
 
-TOKEN = "discord bot token is str"
+TOKEN = "discordBOT token in str"
 # Objectの頭文字は大文字
-MY_GUILD = discord.Object("serverID is int")
 
 
 class MyBot(commands.Bot):
@@ -16,24 +15,27 @@ class MyBot(commands.Bot):
 
     def __init__(self, prefix: str, intents: discord.Intents):
         super().__init__(command_prefix=prefix, intents=intents)
-
+        self.my_guild = discord.Object("serverID in int")
         # 動かなかった場合アクティブしたら動くかも？
         # self.tree = app_commands.CommandTree(self)
 
     async def setup_hook(self):
         # スラッシュコマンド使えるようにしてると思われ・・・
-        self.tree.copy_global_to(guild=MY_GUILD)
-        await self.tree.sync(guild=MY_GUILD)
+        # self.tree.add_command(guild=MY_GUILD)
+        self.tree.copy_global_to(guild=self.my_guild)
+        await self.tree.sync(guild=self.my_guild)
 
     async def on_ready(self):
         print("起動完了...")
+
+    async def on_command_error(self, ctx, error):
+        await ctx.send(f"{error}")
 
 
 async def main():
     intents = discord.Intents.all()
     intents.message_content = True
     bot = MyBot(prefix="$", intents=intents)
-
     # CogFileの初回読込
     await bot.load_extension("cogfile")
 
