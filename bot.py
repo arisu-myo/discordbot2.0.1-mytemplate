@@ -38,6 +38,7 @@ async def main():
     bot = MyBot(prefix="$", intents=intents)
     # CogFileの初回読込
     await bot.load_extension("cogfile")
+    await bot.load_extension("add/buttoncog")
 
     async with bot:
         await bot.start(TOKEN)

@@ -52,3 +52,11 @@ class ButtonCog(commands.Cog):
 
         # Viewはclassを使ってoverrideしてもOK
         await ctx.send(view=view)
+
+
+async def setup(bot: commands.Bot):
+    """
+    ※注意:この関数がBOT本体に読み込まれます\n
+    新しくCogを追加した場合この関数に追加してください
+    """
+    await bot.add_cog(ButtonCog(bot))

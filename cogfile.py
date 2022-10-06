@@ -46,6 +46,7 @@ class ReloadCog(commands.Cog):
             return
 
         await self.bot.reload_extension("cogfile")
+        await self.bot.reload_extension("add/buttoncog")
         message = await ctx.send("更新処理を開始します")
         self.now_load.start(ctx, message)
 

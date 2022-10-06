@@ -9,6 +9,22 @@ discord.py 2.0.1
 ## 変更情報
 2022/10/06 Button例を追加しました。
 
+```python
+# ADDファルダ―は拡張機能で活用できる可能性がある実装例を載せています。
+# また、本ファイルADDフォルダー内のCogが使用可能状態のコードが掲載されています。
+# 下記にCogFile追加で必要なコード載せています。
+
+# 初回読み込み時
+await bot.load_extension("add/add_cog")
+
+# リロード時
+await self.bot.reload_extension("add/add_cog")
+
+# 有効にするコード
+async def setup(bot: commands.Bot)
+    await bot.add_cog(Cog(bot))
+```
+
 2022/09/24 スラッシュコマンドが一部更新されていなかった問題ついて
 
 ●MY_GUILDがMyBot内に移動しました(file:bot.py)
